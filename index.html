@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Malla Geología USS</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .checked { text-decoration: line-through; color: gray; }
+  </style>
+</head>
+<body class="bg-gray-100 p-4 text-gray-900">
+  <h1 class="text-3xl font-bold mb-4 text-center">Malla Geología USS</h1>
+  <div id="malla" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4"></div>
+
+  <div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+    <div class="bg-white p-6 rounded shadow-xl max-w-md">
+      <h2 class="text-xl font-bold mb-2" id="modalTitle"></h2>
+      <p id="modalContent"></p>
+      <button onclick="cerrarModal()" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded">Cerrar</button>
+    </div>
+  </div>
+
+  <script>
+    const malla = [
+      {
+        semestre: 1,
+        ramos: [
+          { nombre: "Álgebra", desc: "Matemáticas básicas." },
+          { nombre: "Introducción al Cálculo", desc: "Conceptos iniciales de cálculo." },
+          { nombre: "Taller de Aptitudes", desc: "Habilidades lógicas." },
+          { nombre: "Química General", desc: "Fundamentos de química." },
+          { nombre: "Antropología", desc: "Estudio del ser humano." }
+        ]
+      },
+      {
+        semestre: 2,
+        ramos: [
+          { nombre: "Cálculo Diferencial", desc: "Derivadas y más." },
+          { nombre: "Álgebra Lineal", desc: "Matrices y vectores." },
+          { nombre: "Física", desc: "Fundamentos físicos." },
+          { nombre: "Ética", desc: "Reflexión moral." },
+          { nombre: "Introducción a la Geología", desc: "Panorama general." }
+        ]
+      }
+      // Agrega más semestres aquí...
+    ];
+
+    const progreso = JSON.parse(localStorage.getItem("progresoMalla") || "{}");
+
+    function guardarProgreso() {
+      localStorage.setItem("progresoMalla", JSON.stringify(progreso));
+    }
+
+    function toggleRamo(sem, index) {
+      const key = `s${sem}_r${index}`;
+      progreso[key] = !progreso[key];
+      guardarProgreso();
+      renderMalla();
+    }
+
+    function mostrarDetalle(ramo) {
+      document.getElementById("modalTitle").textContent = ramo.nombre;
+      document.getElementById("modalContent").textContent = ramo.desc;
+      document.getElementById("modal").classList.remove("hidden");
+    }
+
+    function cerrarModal() {
+      document.getElementById("modal").classList.add("hidden");
+    }
+
+    function renderMalla() {
+      const container = document.getElementById("malla");
+      container.innerHTML = "";
+
+      malla.forEach((sem, sIdx) => {
+        const col = document.createElement("div");
+        col.className = "bg-white shadow rounded p-3";
+        const title = document.createElement("h2");
+        title.className = "text-xl font-semibold mb-2";
+        title.textContent = `Semestre ${sem.semestre}`;
+        col.appendChild(title);
+
+        sem.ramos.forEach((ramo, rIdx) => {
+          const key = `s${sIdx}_r${rIdx}`;
+          const item = document.createElement("div");
+          item.className = `cursor-pointer p-1 rounded ${progreso[key] ? 'checked' : ''}`;
+          item.textContent = ramo.nombre;
+          item.onclick = () => toggleRamo(sIdx, rIdx);
+          item.oncontextmenu = (e) => {
+            e.preventDefault();
+            mostrarDetalle(ramo);
+          };
+          col.appendChild(item);
+        });
+
+        container.appendChild(col);
+      });
+    }
+
+    renderMalla();
+  </script>
+</body>
+</html>
