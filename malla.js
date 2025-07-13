@@ -18,14 +18,14 @@ const malla = [
         "grupo": "mat"
       },
       {
-        "nombre": "Química General",
+        "nombre": "Introduccion a la Geologia",
         "desc": "",
-        "grupo": "cien"
+        "grupo": "geo"
       },
       {
-        "nombre": "Antropología",
+        "nombre": "Taller de Programacion 1",
         "desc": "",
-        "grupo": "inte"
+        "grupo": "comp"
       }
     ]
   },
@@ -43,19 +43,24 @@ const malla = [
         "grupo": "mat"
       },
       {
-        "nombre": "Física",
+        "nombre": "Quimica General",
         "desc": "",
         "grupo": "cien"
       },
       {
-        "nombre": "Ética",
-        "desc": "",
-        "grupo": "inte"
-      },
-      {
-        "nombre": "Introducción a la Geología",
+        "nombre": "Cartografía Geológica y Sistemas de Información Geográfica",
         "desc": "",
         "grupo": "geo"
+      },
+      {
+        "nombre": "Taller de Programacion 2",
+        "desc": "",
+        "grupo": "comp"
+      },
+      {
+        "nombre": "Antropologia",
+        "desc": "",
+        "grupo": "inte"
       }
     ]
   },
@@ -63,102 +68,12 @@ const malla = [
     "semestre": 3,
     "ramos": [
       {
-        "nombre": "Cartografía Geológica y Sistemas de Información Geográfica",
+        "nombre": "Fisica",
         "desc": "",
-        "grupo": "geo"
-      },
-      {
-        "nombre": "Taller de Sustentabilidad",
-        "desc": "",
-        "grupo": "inte"
-      },
-      {
-        "nombre": "Taller de Programación I",
-        "desc": "",
-        "grupo": "comp"
+        "grupo": "cien"
       },
       {
         "nombre": "Cristalografía y Mineralogía",
-        "desc": "",
-        "grupo": "geo"
-      },
-      {
-        "nombre": "Geomorfología",
-        "desc": "",
-        "grupo": "geo"
-      },
-      {
-        "nombre": "Persona y Sociedad",
-        "desc": "",
-        "grupo": "inte"
-      }
-    ]
-  },
-  {
-    "semestre": 4,
-    "ramos": [
-      {
-        "nombre": "Geoquímica",
-        "desc": "",
-        "grupo": "geo"
-      },
-      {
-        "nombre": "Taller de Programación II",
-        "desc": "",
-        "grupo": "comp"
-      },
-      {
-        "nombre": "Modelación Matemática en Geociencias",
-        "desc": "",
-        "grupo": "mat"
-      },
-      {
-        "nombre": "Hidrogeología",
-        "desc": "",
-        "grupo": "geo"
-      },
-      {
-        "nombre": "Electivo I: Formación Integral",
-        "desc": "",
-        "grupo": "inte"
-      }
-    ]
-  },
-  {
-    "semestre": 5,
-    "ramos": [
-      {
-        "nombre": "Petrología Ígnea",
-        "desc": "",
-        "grupo": "geo"
-      },
-      {
-        "nombre": "Geología Estructural",
-        "desc": "",
-        "grupo": "geo"
-      },
-      {
-        "nombre": "Petrología Sedimentaria",
-        "desc": "",
-        "grupo": "geo"
-      },
-      {
-        "nombre": "Taller de Tecnologías Digitales",
-        "desc": "",
-        "grupo": "comp"
-      },
-      {
-        "nombre": "Gestión del riesgo Geológico",
-        "desc": "",
-        "grupo": "inte"
-      }
-    ]
-  },
-  {
-    "semestre": 6,
-    "ramos": [
-      {
-        "nombre": "Petrología Metamórfica",
         "desc": "",
         "grupo": "geo"
       },
@@ -168,44 +83,14 @@ const malla = [
         "grupo": "geo"
       },
       {
-        "nombre": "Ingeniería Geologógica y Geotecnia",
-        "desc": "",
-        "grupo": "geo"
-      },
-      {
-        "nombre": "Análisis de Datos Geológicos",
+        "nombre": "Taller de Tecnologias Digitales",
         "desc": "",
         "grupo": "comp"
       },
       {
-        "nombre": "Gestión para la Empleabilidad",
+        "nombre": "Etica",
         "desc": "",
         "grupo": "inte"
-      }
-    ]
-  },
-  {
-    "semestre": 7,
-    "ramos": [
-      {
-        "nombre": "Exploración Geológica y Geología de Minas",
-        "desc": "",
-        "grupo": "geo"
-      },
-      {
-        "nombre": "Termodinámica Aplicada a la Geología",
-        "desc": "",
-        "grupo": "cien"
-      },
-      {
-        "nombre": "Caracterización de Minerales",
-        "desc": "",
-        "grupo": "geo"
-      },
-      {
-        "nombre": "Geofísica",
-        "desc": "",
-        "grupo": "geo"
       },
       {
         "nombre": "Gestión Personal y Habilidades para la Vida",
@@ -215,15 +100,85 @@ const malla = [
     ]
   },
   {
-    "semestre": 8,
+    "semestre": 4,
     "ramos": [
       {
-        "nombre": "Geología Andina y Geopatrimonio",
+        "nombre": "Taller de Sustentabilidad",
+        "desc": "",
+        "grupo": "inte"
+      },
+      {
+       "nombre": "Modelación Matemática en Geociencias",
+        "desc": "",
+        "grupo": "mat"
+      },
+      {
+        "nombre": "Termodinamica Aplicada a la Geologia",
+        "desc": "",
+        "grupo": "cien"
+      },
+      {
+        "nombre": "Análisis de Datos Geológicos",
+        "desc": "",
+        "grupo": "comp"
+      },
+      {
+        "nombre": "Geologia Estructural",
+        "desc": "",
+        "grupo": "geo"
+      }
+    ]
+  },
+  {
+    "semestre": 5,
+    "ramos": [
+      {
+        "nombre": "GeoQuimica",
         "desc": "",
         "grupo": "geo"
       },
       {
-        "nombre": "Paleontología",
+        "nombre": "GeoMorfologia",
+        "desc": "",
+        "grupo": "geo"
+      },
+      {
+        "nombre": "Caracterizacion de Minerales",
+        "desc": "",
+        "grupo": "geo"
+      },
+      {
+        "nombre": "GeoFisica",
+        "desc": "",
+        "grupo": "geo"
+      },
+      {
+        "nombre": "Taller de Inovacion",
+        "desc": "",
+        "grupo": "inte"
+      },
+      {
+        "nombre": "Persona y Sociedad",
+        "desc": "",
+        "grupo": "inte"
+      }
+    ]
+  },
+  {
+    "semestre": 6,
+    "ramos": [
+      {
+        "nombre": "Petrología Ignea",
+        "desc": "",
+        "grupo": "geo"
+      },
+      {
+        "nombre": "HidroGeologia",
+        "desc": "",
+        "grupo": "geo"
+      },
+      {
+        "nombre": "Paleontologia",
         "desc": "",
         "grupo": "geo"
       },
@@ -233,12 +188,77 @@ const malla = [
         "grupo": "inte"
       },
       {
-        "nombre": "Geología de Campo I",
+        "nombre": "Practica Industrial",
+        "desc": "",
+        "grupo": "inte"
+      },
+      {
+        "nombre": "Electivo 1: Formacion Integral",
+        "desc": "",
+        "grupo": "inte"
+      },
+      {
+        "nombre": "Gestion en Equipo Para el Alto Desempeño",
+        "desc": "",
+        "grupo": "inte"
+      }
+    ]
+  },
+  {
+    "semestre": 7,
+    "ramos": [
+      {
+        "nombre": "Petrologia Metamorfica",
         "desc": "",
         "grupo": "geo"
       },
       {
-        "nombre": "Gestión en Equipos para el Alto Desempeño",
+        "nombre": "Petrologia Sedimentaria",
+        "desc": "",
+        "grupo": "geo"
+      },
+      {
+        "nombre": "Metalogenesis",
+        "desc": "",
+        "grupo": "geo"
+      },
+      {
+        "nombre": "Geologia de Campo 1",
+        "desc": "",
+        "grupo": "geo"
+      },
+      {
+        "nombre": "Electivo 2: Formacion Integral",
+        "desc": "",
+        "grupo": "inte"
+      }
+    ]
+  },
+  {
+    "semestre": 8,
+    "ramos": [
+      {
+        "nombre": "Formulacion y Evaluacion de Proyectos",
+        "desc": "",
+        "grupo": "inte"
+      },
+      {
+        "nombre": "Ingenieria Geologica y GeoTecnia",
+        "desc": "",
+        "grupo": "geo"
+      },
+      {
+        "nombre": "Gestion Sostenible en Geologia",
+        "desc": "",
+        "grupo": "geo"
+      },
+      {
+        "nombre": "Practica Profesional",
+        "desc": "",
+        "grupo": "geo"
+      },
+      {
+        "nombre": "Electivo 3: Formacion Integral",
         "desc": "",
         "grupo": "inte"
       }
@@ -248,9 +268,9 @@ const malla = [
     "semestre": 9,
     "ramos": [
       {
-        "nombre": "Formulación y Evaluación de Proyectos",
+        "nombre": "Exploración Geológica y Geología de Minas",
         "desc": "",
-        "grupo": "inte"
+        "grupo": "geo"
       },
       {
         "nombre": "Geología de Campo II",
@@ -263,14 +283,19 @@ const malla = [
         "grupo": "inte"
       },
       {
-        "nombre": "Práctica Profesional",
-        "desc": "",
-        "grupo": "inte"
-      },
-      {
-        "nombre": "Electivo de Profundización I",
+        "nombre": "Electivo de Profundizacion 1",
         "desc": "",
         "grupo": "prof"
+      },
+      {
+        "nombre": "Electivo de Profundización 2",
+        "desc": "",
+        "grupo": "prof"
+      },
+      {
+         "nombre": "Gestion del Riesgo Geologico",
+        "desc": "",
+        "grupo": "geo"
       }
     ]
   },
@@ -278,24 +303,22 @@ const malla = [
     "semestre": 10,
     "ramos": [
       {
-        "nombre": "Vía de Titulación(*)",
+        "nombre": "Geologia Andina y GeoPatrimonio",
         "desc": "",
-        "grupo": "tit"
+        "grupo": "geo"
       },
       {
-        "nombre": "Práctica Industrial",
+        "nombre": "Via de Titulacion",
         "desc": "",
         "grupo": "inte"
-      },
-      {
-        "nombre": "Electivo de Profundización II",
-        "desc": "",
-        "grupo": "prof"
       },
       {
         "nombre": "Gestión de Carrera y Desarrollo Profesional",
         "desc": "",
         "grupo": "inte"
+      },
+      {
+      "nombre":"LA AMO MXO MI AMOR"
       }
     ]
   }
