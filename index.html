@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -13,26 +14,17 @@
       background-attachment: fixed;
       background-position: center;
     }
-
-    .checked {
-      text-decoration: line-through;
-      color: #9ca3af;
-    }
-
-    .card {
-      background-color: rgba(255, 240, 245, 0.85); /* rosado pastel con transparencia */
-      backdrop-filter: blur(5px);
-    }
+    .checked { text-decoration: line-through; color: #9ca3af; }
+    .card { background-color: rgba(255, 240, 245, 0.85); backdrop-filter: blur(5px); }
+    .highlight { background-color: rgba(255, 182, 193, 0.3); }
   </style>
 </head>
 <body class="text-gray-900 p-4 min-h-screen">
   <div class="max-w-7xl mx-auto">
     <h1 class="text-4xl font-bold mb-6 text-center text-pink-700 drop-shadow-lg">Malla Geología USS</h1>
-    <p class="text-center text-pink-500 mb-6">Toca un ramo para marcarlo como cursado. Mantén presionado para ver detalles.</p>
+    <p class="text-center text-pink-500 mb-6">Toca un ramo para marcarlo como cursado. Mantén presionado para ver detalles. Ramos relacionados se iluminan al pasar el mouse.</p>
     <div id="malla" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4"></div>
   </div>
-
-  <!-- Modal de detalles -->
   <div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
     <div class="bg-white p-6 rounded-xl shadow-2xl max-w-md w-full">
       <h2 id="modalTitle" class="text-xl font-bold mb-2 text-pink-600"></h2>
@@ -40,77 +32,21 @@
       <button onclick="cerrarModal()" class="mt-4 px-4 py-2 bg-pink-500 text-white rounded hover:bg-pink-600">Cerrar</button>
     </div>
   </div>
-
   <script>
     const malla = [
       { semestre: 1, ramos: [
-        { nombre: "Álgebra", desc: "Matemáticas básicas" },
-        { nombre: "Introducción al Cálculo", desc: "Conceptos de cálculo inicial" },
-        { nombre: "Taller de Aptitudes", desc: "Lógica y matemáticas" },
-        { nombre: "Química General", desc: "Fundamentos químicos" },
-        { nombre: "Antropología", desc: "Estudio del ser humano" }
+        { nombre: "Álgebra", desc: "Matemáticas básicas", grupo: "mat" },
+        { nombre: "Introducción al Cálculo", desc: "Conceptos de cálculo inicial", grupo: "mat" },
+        { nombre: "Taller de Aptitudes Lógicas y Matemáticas", desc: "Lógica y razonamiento", grupo: "mat" },
+        { nombre: "Química General", desc: "Fundamentos químicos", grupo: "cien" },
+        { nombre: "Antropología", desc: "Estudio del ser humano", grupo: "inte" }
       ]},
       { semestre: 2, ramos: [
-        { nombre: "Cálculo Diferencial e Integral", desc: "Derivadas e integrales" },
-        { nombre: "Álgebra Lineal", desc: "Matrices y vectores" },
-        { nombre: "Física", desc: "Fundamentos de física" },
-        { nombre: "Ética", desc: "Reflexión ética" },
-        { nombre: "Introducción a la Geología", desc: "Panorama general" }
-      ]},
-      { semestre: 3, ramos: [
-        { nombre: "Taller de Sustentabilidad", desc: "Sustentabilidad en geociencias" },
-        { nombre: "Taller de Programación I", desc: "Introducción a la programación" },
-        { nombre: "Cristalografía y Mineralogía", desc: "Estructura de minerales" },
-        { nombre: "Geomorfología", desc: "Modelado del relieve terrestre" },
-        { nombre: "Persona y Sociedad", desc: "Interacción y desarrollo social" }
-      ]},
-      { semestre: 4, ramos: [
-        { nombre: "Geoquímica", desc: "Composición química de la Tierra" },
-        { nombre: "Taller de Programación II", desc: "Programación avanzada" },
-        { nombre: "Modelación Matemática", desc: "Aplicaciones en geociencias" },
-        { nombre: "Hidrogeología", desc: "Estudio de aguas subterráneas" },
-        { nombre: "Electivo I (Formación Integral)", desc: "Asignatura institucional" }
-      ]},
-      { semestre: 5, ramos: [
-        { nombre: "Petrología Ígnea", desc: "Rocas ígneas" },
-        { nombre: "Geología Estructural", desc: "Estructuras geológicas" },
-        { nombre: "Petrología Sedimentaria", desc: "Rocas sedimentarias" },
-        { nombre: "Taller de Tecnologías Digitales", desc: "Herramientas modernas" },
-        { nombre: "Gestión del Riesgo Geológico", desc: "Análisis de riesgos" }
-      ]},
-      { semestre: 6, ramos: [
-        { nombre: "Petrología Metamórfica", desc: "Transformación de rocas" },
-        { nombre: "Estratigrafía y Geología Histórica", desc: "Capas geológicas" },
-        { nombre: "Ingeniería Geológica", desc: "Aplicaciones geotécnicas" },
-        { nombre: "Análisis de Datos Geológicos", desc: "Estadística y datos" },
-        { nombre: "Gestión para la Empleabilidad", desc: "Desarrollo profesional" }
-      ]},
-      { semestre: 7, ramos: [
-        { nombre: "Exploración Geológica", desc: "Técnicas exploratorias" },
-        { nombre: "Termodinámica Aplicada", desc: "Principios termodinámicos" },
-        { nombre: "Caracterización de Minerales", desc: "Propiedades físicas" },
-        { nombre: "Geofísica", desc: "Propiedades físicas del subsuelo" },
-        { nombre: "Gestión Personal", desc: "Habilidades para la vida" }
-      ]},
-      { semestre: 8, ramos: [
-        { nombre: "Geología de Minas", desc: "Recursos minerales" },
-        { nombre: "Paleontología", desc: "Fósiles y evolución" },
-        { nombre: "Taller de Emprendimiento", desc: "Ideas de negocio" },
-        { nombre: "Geología de Campo I", desc: "Trabajo práctico" },
-        { nombre: "Gestión de Equipos", desc: "Trabajo en equipo" }
-      ]},
-      { semestre: 9, ramos: [
-        { nombre: "Geología Andina y Geopatrimonio", desc: "Cordillera de los Andes" },
-        { nombre: "Metalogénesis", desc: "Formación de depósitos minerales" },
-        { nombre: "Taller en Empresa I", desc: "Experiencia laboral" },
-        { nombre: "Práctica Profesional", desc: "Aplicación de conocimientos" },
-        { nombre: "Electivo I (Profundización)", desc: "Enfoque técnico" }
-      ]},
-      { semestre: 10, ramos: [
-        { nombre: "Vía de Titulación", desc: "Proyecto final de carrera" },
-        { nombre: "Práctica Industrial", desc: "Trabajo en terreno" },
-        { nombre: "Electivo II (Profundización)", desc: "Complemento académico" },
-        { nombre: "Gestión de Carrera", desc: "Preparación para el mundo laboral" }
+        { nombre: "Cálculo Diferencial e Integral", desc: "Derivadas e integrales", grupo: "mat" },
+        { nombre: "Álgebra Lineal", desc: "Matrices y vectores", grupo: "mat" },
+        { nombre: "Física", desc: "Fundamentos físicos", grupo: "cien" },
+        { nombre: "Ética", desc: "Reflexión ética", grupo: "inte" },
+        { nombre: "Introducción a la Geología", desc: "Panorama general", grupo: "geo" }
       ]}
     ];
 
@@ -137,6 +73,16 @@
       document.getElementById("modal").classList.add("hidden");
     }
 
+    function resaltarGrupo(grupo, entrar) {
+      document.querySelectorAll(`[data-grupo="${grupo}"]`).forEach(el => {
+        if (entrar) {
+          el.classList.add("highlight");
+        } else {
+          el.classList.remove("highlight");
+        }
+      });
+    }
+
     function renderMalla() {
       const container = document.getElementById("malla");
       container.innerHTML = "";
@@ -152,13 +98,16 @@
         sem.ramos.forEach((ramo, rIdx) => {
           const key = `s${sIdx}_r${rIdx}`;
           const item = document.createElement("div");
-          item.className = `cursor-pointer p-1 rounded hover:bg-pink-200 ${progreso[key] ? 'checked' : ''}`;
+          item.className = `cursor-pointer p-1 rounded hover:bg-pink-200 transition ${progreso[key] ? 'checked' : ''}`;
           item.textContent = ramo.nombre;
+          item.setAttribute("data-grupo", ramo.grupo);
           item.onclick = () => toggleRamo(sIdx, rIdx);
           item.oncontextmenu = (e) => {
             e.preventDefault();
             mostrarDetalle(ramo);
           };
+          item.onmouseenter = () => resaltarGrupo(ramo.grupo, true);
+          item.onmouseleave = () => resaltarGrupo(ramo.grupo, false);
           col.appendChild(item);
         });
 
