@@ -1,49 +1,117 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Malla Geología USS</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/4243/4243694.png">
   <style>
-    .checked { text-decoration: line-through; color: gray; }
+    body {
+      background-image: url('https://images.unsplash.com/photo-1501869150797-9bbb64f7821e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+    }
+
+    .checked {
+      text-decoration: line-through;
+      color: #9ca3af;
+    }
+
+    .card {
+      background-color: rgba(255, 240, 245, 0.85); /* rosado pastel con transparencia */
+      backdrop-filter: blur(5px);
+    }
   </style>
 </head>
-<body class="bg-gray-100 p-4 text-gray-900">
-  <h1 class="text-3xl font-bold mb-4 text-center">Malla Geología USS</h1>
-  <div id="malla" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4"></div>
+<body class="text-gray-900 p-4 min-h-screen">
+  <div class="max-w-7xl mx-auto">
+    <h1 class="text-4xl font-bold mb-6 text-center text-pink-700 drop-shadow-lg">Malla Geología USS</h1>
+    <p class="text-center text-pink-500 mb-6">Toca un ramo para marcarlo como cursado. Mantén presionado para ver detalles.</p>
+    <div id="malla" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4"></div>
+  </div>
 
-  <div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-    <div class="bg-white p-6 rounded shadow-xl max-w-md">
-      <h2 class="text-xl font-bold mb-2" id="modalTitle"></h2>
-      <p id="modalContent"></p>
-      <button onclick="cerrarModal()" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded">Cerrar</button>
+  <!-- Modal de detalles -->
+  <div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
+    <div class="bg-white p-6 rounded-xl shadow-2xl max-w-md w-full">
+      <h2 id="modalTitle" class="text-xl font-bold mb-2 text-pink-600"></h2>
+      <p id="modalContent" class="text-sm text-gray-700"></p>
+      <button onclick="cerrarModal()" class="mt-4 px-4 py-2 bg-pink-500 text-white rounded hover:bg-pink-600">Cerrar</button>
     </div>
   </div>
 
   <script>
     const malla = [
-      {
-        semestre: 1,
-        ramos: [
-          { nombre: "Álgebra", desc: "Matemáticas básicas." },
-          { nombre: "Introducción al Cálculo", desc: "Conceptos iniciales de cálculo." },
-          { nombre: "Taller de Aptitudes", desc: "Habilidades lógicas." },
-          { nombre: "Química General", desc: "Fundamentos de química." },
-          { nombre: "Antropología", desc: "Estudio del ser humano." }
-        ]
-      },
-      {
-        semestre: 2,
-        ramos: [
-          { nombre: "Cálculo Diferencial", desc: "Derivadas y más." },
-          { nombre: "Álgebra Lineal", desc: "Matrices y vectores." },
-          { nombre: "Física", desc: "Fundamentos físicos." },
-          { nombre: "Ética", desc: "Reflexión moral." },
-          { nombre: "Introducción a la Geología", desc: "Panorama general." }
-        ]
-      }
-      // Agrega más semestres aquí...
+      { semestre: 1, ramos: [
+        { nombre: "Álgebra", desc: "Matemáticas básicas" },
+        { nombre: "Introducción al Cálculo", desc: "Conceptos de cálculo inicial" },
+        { nombre: "Taller de Aptitudes", desc: "Lógica y matemáticas" },
+        { nombre: "Química General", desc: "Fundamentos químicos" },
+        { nombre: "Antropología", desc: "Estudio del ser humano" }
+      ]},
+      { semestre: 2, ramos: [
+        { nombre: "Cálculo Diferencial e Integral", desc: "Derivadas e integrales" },
+        { nombre: "Álgebra Lineal", desc: "Matrices y vectores" },
+        { nombre: "Física", desc: "Fundamentos de física" },
+        { nombre: "Ética", desc: "Reflexión ética" },
+        { nombre: "Introducción a la Geología", desc: "Panorama general" }
+      ]},
+      { semestre: 3, ramos: [
+        { nombre: "Taller de Sustentabilidad", desc: "Sustentabilidad en geociencias" },
+        { nombre: "Taller de Programación I", desc: "Introducción a la programación" },
+        { nombre: "Cristalografía y Mineralogía", desc: "Estructura de minerales" },
+        { nombre: "Geomorfología", desc: "Modelado del relieve terrestre" },
+        { nombre: "Persona y Sociedad", desc: "Interacción y desarrollo social" }
+      ]},
+      { semestre: 4, ramos: [
+        { nombre: "Geoquímica", desc: "Composición química de la Tierra" },
+        { nombre: "Taller de Programación II", desc: "Programación avanzada" },
+        { nombre: "Modelación Matemática", desc: "Aplicaciones en geociencias" },
+        { nombre: "Hidrogeología", desc: "Estudio de aguas subterráneas" },
+        { nombre: "Electivo I (Formación Integral)", desc: "Asignatura institucional" }
+      ]},
+      { semestre: 5, ramos: [
+        { nombre: "Petrología Ígnea", desc: "Rocas ígneas" },
+        { nombre: "Geología Estructural", desc: "Estructuras geológicas" },
+        { nombre: "Petrología Sedimentaria", desc: "Rocas sedimentarias" },
+        { nombre: "Taller de Tecnologías Digitales", desc: "Herramientas modernas" },
+        { nombre: "Gestión del Riesgo Geológico", desc: "Análisis de riesgos" }
+      ]},
+      { semestre: 6, ramos: [
+        { nombre: "Petrología Metamórfica", desc: "Transformación de rocas" },
+        { nombre: "Estratigrafía y Geología Histórica", desc: "Capas geológicas" },
+        { nombre: "Ingeniería Geológica", desc: "Aplicaciones geotécnicas" },
+        { nombre: "Análisis de Datos Geológicos", desc: "Estadística y datos" },
+        { nombre: "Gestión para la Empleabilidad", desc: "Desarrollo profesional" }
+      ]},
+      { semestre: 7, ramos: [
+        { nombre: "Exploración Geológica", desc: "Técnicas exploratorias" },
+        { nombre: "Termodinámica Aplicada", desc: "Principios termodinámicos" },
+        { nombre: "Caracterización de Minerales", desc: "Propiedades físicas" },
+        { nombre: "Geofísica", desc: "Propiedades físicas del subsuelo" },
+        { nombre: "Gestión Personal", desc: "Habilidades para la vida" }
+      ]},
+      { semestre: 8, ramos: [
+        { nombre: "Geología de Minas", desc: "Recursos minerales" },
+        { nombre: "Paleontología", desc: "Fósiles y evolución" },
+        { nombre: "Taller de Emprendimiento", desc: "Ideas de negocio" },
+        { nombre: "Geología de Campo I", desc: "Trabajo práctico" },
+        { nombre: "Gestión de Equipos", desc: "Trabajo en equipo" }
+      ]},
+      { semestre: 9, ramos: [
+        { nombre: "Geología Andina y Geopatrimonio", desc: "Cordillera de los Andes" },
+        { nombre: "Metalogénesis", desc: "Formación de depósitos minerales" },
+        { nombre: "Taller en Empresa I", desc: "Experiencia laboral" },
+        { nombre: "Práctica Profesional", desc: "Aplicación de conocimientos" },
+        { nombre: "Electivo I (Profundización)", desc: "Enfoque técnico" }
+      ]},
+      { semestre: 10, ramos: [
+        { nombre: "Vía de Titulación", desc: "Proyecto final de carrera" },
+        { nombre: "Práctica Industrial", desc: "Trabajo en terreno" },
+        { nombre: "Electivo II (Profundización)", desc: "Complemento académico" },
+        { nombre: "Gestión de Carrera", desc: "Preparación para el mundo laboral" }
+      ]}
     ];
 
     const progreso = JSON.parse(localStorage.getItem("progresoMalla") || "{}");
@@ -52,8 +120,8 @@
       localStorage.setItem("progresoMalla", JSON.stringify(progreso));
     }
 
-    function toggleRamo(sem, index) {
-      const key = `s${sem}_r${index}`;
+    function toggleRamo(sIdx, rIdx) {
+      const key = `s${sIdx}_r${rIdx}`;
       progreso[key] = !progreso[key];
       guardarProgreso();
       renderMalla();
@@ -75,16 +143,16 @@
 
       malla.forEach((sem, sIdx) => {
         const col = document.createElement("div");
-        col.className = "bg-white shadow rounded p-3";
+        col.className = "rounded-xl card p-4 shadow-lg";
         const title = document.createElement("h2");
-        title.className = "text-xl font-semibold mb-2";
+        title.className = "text-lg font-semibold text-pink-700 mb-2 text-center";
         title.textContent = `Semestre ${sem.semestre}`;
         col.appendChild(title);
 
         sem.ramos.forEach((ramo, rIdx) => {
           const key = `s${sIdx}_r${rIdx}`;
           const item = document.createElement("div");
-          item.className = `cursor-pointer p-1 rounded ${progreso[key] ? 'checked' : ''}`;
+          item.className = `cursor-pointer p-1 rounded hover:bg-pink-200 ${progreso[key] ? 'checked' : ''}`;
           item.textContent = ramo.nombre;
           item.onclick = () => toggleRamo(sIdx, rIdx);
           item.oncontextmenu = (e) => {
